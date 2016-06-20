@@ -11,7 +11,7 @@ module Tree where
     (x :-: xs) .++ ys = x :-: (xs .++ ys)
 
     -- Trees
-    -- =====
+    --
     data Tree a = EmptyTree | Node a (Tree a) (Tree a) deriving (Show, Read, Eq)
 
     singleton :: a -> Tree a
