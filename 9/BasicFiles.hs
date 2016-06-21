@@ -35,7 +35,6 @@ withFile' path mode f = do
     hClose handle
     return result
 
-
 -- BlockBuffering:
 -- main = do
 --     withFile "something.txt" ReadMode (\handle -> do
