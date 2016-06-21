@@ -20,3 +20,13 @@ fmap id = id
 ```Haskell
 fmap (g . f) = fmap g . fmap f
 ```
+
+# Applicatives
+
+Applicative typeclass lies in the `Control.Applicative` module and it defines two methods, `pure` and `<*>`. It doesn't provide a default implementation for any of them, so we have to define them both if we want something to be an applicative functor. The class is defined like so:
+
+```Haskell
+class (Functor f) => Applicative f where
+    pure :: a -> f a
+    (<*>) :: f (a -> b) -> f a -> f b
+```
