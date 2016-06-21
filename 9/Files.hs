@@ -1,43 +1,66 @@
+import System.Environment
+import System.Directory
 import System.IO
+import Data.List
 
--- type FilePath = String
+dispatch :: [(String, [String] -> IO ())]
+dispatch =  [("add", add),
+             ("view", view),
+             ("remove", remove)]
 
--- data IOMode = ReadMode | WriteMode | AppendMode | ReadWriteMode
-
--- brute force file opening
--- main :: IO ()
--- main = do
---     handle <- openFile "song.txt" ReadMode
---     contents <- hGetContents handle
---     putStr contents
---     hClose handle
-
--- withFile syntactic sugar
--- main :: IO ()
--- main = withFile "song.txt" ReadMode (\handle -> do
---         contents <- hGetContents handle
---         putStr contents)
-
--- readFile syntactic sugar
 main :: IO ()
 main = do
-    contents <- readFile "song.txt"
-    putStr contents
+    (command:args) <- getArgs
+    let (Just action) = lookup command dispatch
+    action args
 
--- more file functions:
--- writeFile
--- appendFile
+add :: [String] -> IO ()
+add [fileName, todoItem] = appendFile fileName (todoItem ++ "\n")
+add _ = putStr "Bad input"
 
-withFile' :: FilePath -> IOMode -> (Handle -> IO a) -> IO a
-withFile' path mode f = do
-    handle <- openFile path mode
-    result <- f handle
+view :: [String] -> IO ()
+view [fileName] = do
+    contents <- readFile fileName
+    let todoTasks = lines contents
+        numberedTasks = zipWith
+            (\n line -> show n ++ " - " ++ line) [0 :: Integer, 1..] todoTasks
+    putStr $ unlines numberedTasks
+view _ = putStr "Bad input"
+
+remove :: [String] -> IO ()
+remove [fileName, numberString] = do
+    handle <- openFile fileName ReadMode
+    (tempName, tempHandle) <- openTempFile "." "temp"
+    contents <- hGetContents handle
+    let number = read numberString
+        todoTasks = lines contents
+        newTodoItems = delete (todoTasks !! number) todoTasks
+    hPutStr tempHandle $ unlines newTodoItems
     hClose handle
-    return result
+    hClose tempHandle
+    removeFile fileName
+    renameFile tempName fileName
+remove _ = putStr "Bad input"
 
--- BlockBuffering:
+-- import System.IO
+-- import System.Directory
+-- import Data.List
+--
+-- main :: IO ()
 -- main = do
---     withFile "something.txt" ReadMode (\handle -> do
---         hSetBuffering handle $ BlockBuffering (Just 2048)
---         contents <- hGetContents handle
---         putStr contents)
+--     handle <- openFile "todo.txt" ReadMode
+--     (tempName, tempHandle) <- openTempFile "." "temp"
+--     contents <- hGetContents handle
+--     let todoTasks = lines contents
+--         numberedTasks = zipWith (\n line -> show n ++ " - " ++ line) [0..] todoTasks
+--     putStrLn "These are your TO-DO items:"
+--     putStr $ unlines numberedTasks
+--     putStrLn "Which one do you want to delete?"
+--     numberString <- getLine
+--     let number = read numberString
+--         newTodoItems = delete (todoTasks !! number) todoTasks
+--     hPutStr tempHandle $ unlines newTodoItems
+--     hClose handle
+--     hClose tempHandle
+--     removeFile "todo.txt"
+--     renameFile tempName "todo.txt"
