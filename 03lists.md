@@ -67,7 +67,7 @@ True
 [5,4,3,2]
 ```
 
-Here's a nice helper from the [book](https://learnyouahaskell.com):
+Here's a nice helper from the [book](http://learnyouahaskell.com):
 
 ![listmonster](assets/listmonster.png)
 
