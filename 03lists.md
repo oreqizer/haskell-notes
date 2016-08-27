@@ -7,7 +7,7 @@ Lists are **homogeneous** - all elements must be of the same type.
 `++`: concatenation
 
 ```Haskell
-> [1, 2] ++ [3, 4, 5]
+Prelude> [1, 2] ++ [3, 4, 5]
 [1,2,3,4,5]
 ```
 
@@ -16,7 +16,7 @@ Lists are **homogeneous** - all elements must be of the same type.
 `:`: unshift
 
 ```Haskell
-> 1 : [2, 3]
+Prelude> 1 : [2, 3]
 [1,2,3]
 ```
 
@@ -28,7 +28,7 @@ Lists are **homogeneous** - all elements must be of the same type.
 `!!`: get element at index
 
 ```Haskell
-> [1, 2, 3, 4] !! 2
+Prelude> [1, 2, 3, 4] !! 2
 3
 ```
 
@@ -37,33 +37,33 @@ Lists are **homogeneous** - all elements must be of the same type.
 Lists containing *comparable* elements can themselves be compared:
 
 ```Haskell
-> [3,2,1] > [2,1,0]  
+Prelude> [3,2,1] > [2,1,0]  
 True  
-> [3,2,1] > [2,10,100]  
+Prelude> [3,2,1] > [2,10,100]  
 True  
-> [3,4,2] > [3,4]  
+Prelude> [3,4,2] > [3,4]  
 True
 ```
 
 ### Partitioning
 
 ```Haskell
-> head [5,4,3,2,1]  
+Prelude> head [5,4,3,2,1]  
 5
 ```
 
 ```Haskell
-> tail [5,4,3,2,1]  
+Prelude> tail [5,4,3,2,1]  
 [4,3,2,1]
 ```
 
 ```Haskell
-> last [5,4,3,2,1]  
+Prelude> last [5,4,3,2,1]  
 1
 ```
 
 ```Haskell
-> init [5,4,3,2,1]  
+Prelude> init [5,4,3,2,1]  
 [5,4,3,2]
 ```
 
@@ -96,14 +96,14 @@ Mathematical:
 Ranges are a way of making lists that are arithmetic sequences of elements that can be *enumerated*.
 
 ```Haskell
-> [1..10]
+Prelude> [1..10]
 [1,2,3,4,5,6,7,8,9,10]
 ```
 
 Defining steps (must be regular):
 
 ```Haskell
-> [2, 4..10]
+Prelude> [2, 4..10]
 [2,4,6,8,10]
 ```
 
@@ -112,7 +112,7 @@ Defining steps (must be regular):
 Much like *set comprehension* in mathematics, `S = {2 * x | x ∈ N, x <= 10}`. The same in **Haskell**:
 
 ```Haskell
-> [x * 2 | x <- [1..10]]
+Prelude> [x * 2 | x <- [1..10]]
 [2,4,6,8,10,12,14,16,18,20]
 ```
 
@@ -125,21 +125,21 @@ Adding more *sources* results in all possible combinations. All *filters* must b
 *More sources:*
 
 ```Haskell
-> [x*y | x <- [2,5,10], y <- [8,10,11], x*y > 50]  
+Prelude> [x*y | x <- [2,5,10], y <- [8,10,11], x*y > 50]  
 [55,80,100,110]
 ```
 
 *Filter:*
 
 ```Haskell
-> [x | x <- [50..100], x `mod` 7 == 3]
+Prelude> [x | x <- [50..100], x `mod` 7 == 3]
 [52,59,66,73,80,87,94]
 ```
 
 *Alphabetical:*
 
 ```Haskell
-> let justUpper st = [c | c <- st, c `elem` ['A'..'Z']]
-> justUpper "lOL oMG Wtf"
+Prelude> let justUpper st = [c | c <- st, c `elem` ['A'..'Z']]
+Prelude> justUpper "lOL oMG Wtf"
 "OLMGW"
 ```

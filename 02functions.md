@@ -8,13 +8,13 @@ Everything in **Haskell** is a function. Types:
 Making *prefix* functions *infix*:
 
 ```Haskell
-> 3 `elem` [1, 3, 3, 7]  -- surround function name with ``
+Prelude> 3 `elem` [1, 3, 3, 7]  -- surround function name with ``
 True
 ```
 
 Making *infix* functions *prefix*:
 
 ```Haskell
-> (+) 2 5  -- surround function with parentheses
+Prelude> (+) 2 5  -- surround function with parentheses
 7
 ```
