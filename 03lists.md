@@ -125,21 +125,21 @@ Adding more *sources* results in all possible combinations. All *filters* must b
 *More sources:*
 
 ```Haskell
-> [ x*y | x <- [2,5,10], y <- [8,10,11], x*y > 50]  
+> [x*y | x <- [2,5,10], y <- [8,10,11], x*y > 50]  
 [55,80,100,110]
 ```
 
 *Filter:*
 
 ```Haskell
-> [ x | x <- [50..100], x `mod` 7 == 3]
+> [x | x <- [50..100], x `mod` 7 == 3]
 [52,59,66,73,80,87,94]
 ```
 
 *Alphabetical:*
 
 ```Haskell
-> let justUpper st = [ c | c <- st, c `elem` ['A'..'Z']]
+> let justUpper st = [c | c <- st, c `elem` ['A'..'Z']]
 > justUpper "lOL oMG Wtf"
 "OLMGW"
 ```
