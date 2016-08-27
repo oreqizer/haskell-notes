@@ -106,3 +106,40 @@ Defining steps (must be regular):
 > [2, 4..10]
 [2,4,6,8,10]
 ```
+
+## List comprehension
+
+Much like *set comprehension* in mathematics, `S = {2 * x | x ∈ N, x <= 10}`. The same in **Haskell**:
+
+```Haskell
+> [x * 2 | x <- [1..10]]
+[2,4,6,8,10,12,14,16,18,20]
+```
+
+**Common structure:**
+
+`[mapper | source, ...sources | filters]`
+
+Adding more *sources* results in all possible combinations. All *filters* must be passed for the element to be accepted.
+
+*More sources:*
+
+```Haskell
+> [ x*y | x <- [2,5,10], y <- [8,10,11], x*y > 50]  
+[55,80,100,110]
+```
+
+*Filter:*
+
+```Haskell
+> [ x | x <- [50..100], x `mod` 7 == 3]
+[52,59,66,73,80,87,94]
+```
+
+*Alphabetical:*
+
+```Haskell
+> let justUpper st = [ c | c <- st, c `elem` ['A'..'Z']]
+> justUpper "lOL oMG Wtf"
+"OLMGW"
+```
