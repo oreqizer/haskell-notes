@@ -69,7 +69,7 @@ True
 
 Here's a nice helper from the [book](https://learnyouahaskell.com):
 
-![listmonster](../assets/listmonster.png)
+![listmonster](assets/listmonster.png)
 
 ### Other
 
