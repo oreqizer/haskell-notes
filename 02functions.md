@@ -113,7 +113,7 @@ bmiTell bmi
 
 ### Where
 
-The `where` keyword allows **1-n** local helper function declaration, that has access to all of it's parent's content:
+The `where` keyword allows defining **1-n** local helper functions:
 
 ```Haskell
 bmiTell :: (RealFloat a) => a -> a -> String
@@ -129,3 +129,72 @@ bmiTell weight height
 ```
 
 ### Let
+
+The form is `let <bindings> in <expression>`. More local than `where` - not available across *guards* or *matched patterns*.
+
+```Haskell
+cylinder :: (RealFloat a) => a -> a -> a
+cylinder r h =
+    let sideArea = 2 * pi * r * h
+        topArea = pi * r ^2
+    in  sideArea + 2 * topArea
+```
+
+*Let* bindings are expressions, `where` is a syntactic construct.
+
+```Haskell
+Prelude> [let square x = x * x in (square 5, square 3, square 2)]
+[(25,9,4)]
+```
+
+Multiple `let` expressions can be separated by `;`:
+
+```Haskell
+Prelude> (let a = 100; b = 200; c = 300 in a*b*c, let foo="Hey "; bar = "there!" in foo ++ bar)
+(6000000,"Hey there!")
+```
+
+**Pattern matching:**
+
+```Haskell
+Prelude> (let (a,b,c) = (1,2,3) in a+b+c) * 100
+600
+```
+
+**List comprehensions:**
+
+```Haskell
+calcBmis :: (RealFloat a) => [(a, a)] -> [a]
+calcBmis xs = [bmi | (w, h) <- xs, let bmi = w / h ^ 2, bmi >= 25.0]
+```
+
+The `in` part of the `let` binding is omitted when used in *list comprehensions* because the visibility of the names is already predefined there.
+
+### Case expressions
+
+Used for matching *patterns* to *results*:
+
+```Haskell
+case expression of pattern1 -> result1
+                   pattern2 -> result2
+                   pattern3 -> result3
+```
+
+`expression` is matched against the *patterns*. The first matching *pattern*'s *result* is the value of the `case` expression.
+
+> Function pattern matching is just a syntactic sugar for `case` expression.
+
+The following examples are equal:
+
+```Haskell
+describeList :: [a] -> String
+describeList xs = "The list is " ++ case xs of [] -> "empty."
+                                               [x] -> "a singleton list."
+                                               xs -> "a longer list."
+
+describeList' :: [a] -> String
+describeList' xs = "The list is " ++ what xs
+    where what [] = "empty."
+          what [x] = "a singleton list."
+          what xs = "a longer list."
+```
