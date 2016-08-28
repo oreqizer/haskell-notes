@@ -1,4 +1,4 @@
-# GHCI
+# GHCi
 
 To open interactive mode, type `ghci` to your terminal.
 

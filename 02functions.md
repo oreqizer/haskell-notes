@@ -1,6 +1,13 @@
 # Functions
 
-Everything in **Haskell** is a function. Types:
+Everything that takes a parameter in **Haskell** is a function.
+
+* A *value*: `pi = 3.14`
+* A *function*: `doubleMe x = x * 2`
+
+Functions are values of *function* type.
+
+**Types of functions:**
 
 * prefix: `succ 9`
 * infix: `9 * 10`
@@ -47,7 +54,7 @@ lucky 7 = "LUCKY NUMBER SEVEN!"
 lucky x = "Sorry, you're out of luck, pal!"
 ```
 
-This is used mainly to define edge cases in **recursive** functions:
+This is often used to define edge cases in **recursive** functions:
 
 ```Haskell
 factorial :: (Integral a) => a -> a
@@ -87,7 +94,7 @@ sum' (x:xs) = x + sum' xs
 
 **As pattern:**
 
-As pattern is defined as `name@` before a pattern, where *name* will be the matched pattern as a whole:
+Putting `name@` before a pattern where *name* will be the matched pattern as a whole:
 
 ```Haskell
 capital :: String -> String
