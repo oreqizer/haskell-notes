@@ -7,7 +7,7 @@ Prelude> :t "HELLO!"
 "HELLO!" :: [Char]
 ```
 
-It prints `expression :: type`, where `::` is read as *has type of*. It is also used for type casting, when applicable:
+It prints `expression :: type`, where `::` is read as *has type of*. It is also used as a **type annotation**:
 
 ```Haskell
 Prelude> :t 1
