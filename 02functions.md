@@ -120,7 +120,7 @@ bmiTell bmi
 
 ### Where
 
-The `where` keyword allows defining **1-n** local helper functions:
+The `where` keyword allows defining **1-n** local helper *functions* or *names*:
 
 ```Haskell
 bmiTell :: (RealFloat a) => a -> a -> String
@@ -147,14 +147,14 @@ cylinder r h =
     in  sideArea + 2 * topArea
 ```
 
-*Let* bindings are expressions, `where` is a syntactic construct.
+Let bindings are *expressions*, `where` is a *syntactic construct*.
 
 ```Haskell
 Prelude> [let square x = x * x in (square 5, square 3, square 2)]
 [(25,9,4)]
 ```
 
-Multiple `let` expressions can be separated by `;`:
+Multiple inline `let` bindings can be separated by `;`:
 
 ```Haskell
 Prelude> (let a = 100; b = 200; c = 300 in a*b*c, let foo="Hey "; bar = "there!" in foo ++ bar)
