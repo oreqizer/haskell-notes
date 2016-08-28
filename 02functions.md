@@ -12,6 +12,8 @@ Prelude> succ 9 + 10
 20
 ```
 
+> If a function is comprised only of *special characters*, it's considered an infix function by default. `==`, `*`, `+`, `-`, `/` and many more are all infix.
+
 Infix functions have their own precedence rules (mostly related to math):
 
 ```Haskell
