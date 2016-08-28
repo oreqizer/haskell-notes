@@ -16,7 +16,6 @@ Prelude> :t 1 :: Integer
 1 :: Integer :: Integer
 Prelude> :t 1 :: Float
 1 :: Float :: Float
-Prelude>
 ```
 
 Function types:
@@ -38,3 +37,12 @@ They can be also determined by `ghci` from the implementation (checked with `:t`
 * `Bool` is `True` or `False`
 
 ### Type variables
+
+Used to describe **polymorphic functions**:
+
+```Haskell
+Prelude> :t head
+head :: [a] -> a
+```
+
+`a` can be any type. `head` takes a list of items of type `a`, returns an item of the same type `a`.
