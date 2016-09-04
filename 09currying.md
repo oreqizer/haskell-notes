@@ -48,3 +48,23 @@ Prelude> :t (10/)
 Prelude> (10/) 5
 2.0
 ```
+
+Which side of function to partially apply can also be chosen on *prefix* functions made *infix*:
+
+```Haskell
+Prelude> :t (`elem` ['A'..'Z'])
+(`elem` ['A'..'Z']) :: Char -> Bool
+Prelude> :t (['A'..'Z'] `elem`)
+(['A'..'Z'] `elem`) :: Foldable t => t [Char] -> Bool
+```
+
+If both sides aren't applied, e.g. by doing `(/)`, left side is applied first. This is due to the type:
+
+```Haskell
+Prelude> :t (/)
+(/) :: Fractional a => a -> a -> a
+Prelude> :t (/) 10
+(/) 10 :: Fractional a => a -> a
+Prelude> (/) 10 2
+5.0
+```
