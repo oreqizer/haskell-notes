@@ -2,6 +2,8 @@
 
 Props to [Haskell Curry](https://en.wikipedia.org/wiki/Haskell_Curry). Make sure you understand this stuff!
 
+> **Note:** It's still common to say a function takes multiple parameters despite what is going on under the hood.
+
 Every function in **Haskell** is *curried* by default - officially takes 1 parameter. We can perform **partial application**:
 
 ```Haskell
