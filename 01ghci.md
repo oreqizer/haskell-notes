@@ -11,3 +11,13 @@ Prelude> l
 ```
 
 It's the same as doing `l = [1, 2, 3]` in a module and then loading it.
+
+### Comments
+
+```Haskell
+-- Single line comments start with two dashes.
+
+{- Multiline comments can be enclosed
+in a block like this.
+-}
+```
