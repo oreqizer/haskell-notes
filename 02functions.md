@@ -12,7 +12,7 @@ Functions are values of *function* type.
 * prefix: `succ 9`
 * infix: `9 * 10`
 
-Function *application* has precedence over infix functions:
+Function *application* is **left associative** and has precedence over infix functions:
 
 ```Haskell
 Prelude> succ 9 + 10
