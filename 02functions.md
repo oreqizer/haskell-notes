@@ -35,7 +35,7 @@ Prelude> (+) 2 5  -- surround function with parentheses
 7
 ```
 
-*Mind:* the above is partial application (see [#9](./09currying.md)), not a syntactic construct. `2` gets applied to the left, producing `(2+)`. Then `5` gets applied, making it `2 + 5` which evaluates to `7`.
+> Mind: the above is partial application (see [#9](./09currying.md)), not a syntactic construct. `2` gets applied to the left, producing `(2+)`. Then `5` gets applied, making it `2 + 5` which evaluates to `7`.
 
 ### Precedence
 
