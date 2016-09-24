@@ -11,7 +11,7 @@ Prelude> [1, 2] ++ [3, 4, 5]
 [1,2,3,4,5]
 ```
 
-> Careful when using the ++ operator. Putting together two lists internally, Haskell has to walk through the whole list on the left side of ++. Prefer : if available.
+> Careful when using the `++` operator. Putting together two lists internally, Haskell has to walk through the whole list on the left side of `++`. Prefer `:` if available.
 
 `:`: unshift
 
@@ -20,8 +20,7 @@ Prelude> 1 : [2, 3]
 [1,2,3]
 ```
 
-*Note:*
-`[1,2,3]` is actually just syntactic sugar for `1:2:3:[]`.
+More on the definition of lists in [#12](./12data_types.md).
 
 ### Extracting
 
@@ -107,7 +106,7 @@ Prelude> [2, 4..10]
 [2,4,6,8,10]
 ```
 
-## List comprehension
+### List comprehension
 
 Much like *set comprehension* in mathematics, `S = {2 * x | x ∈ N, x <= 10}`. The same in **Haskell**:
 
