@@ -142,7 +142,7 @@ Used for, well, records:
 data Person = Person { name :: String
                      , age  :: Int
                      , food :: String
-                     } deriving (Eq, Show)
+                     }
 ```
 
 This creates the functions **name**, **age** and **food**, that will return the values of the fields of the specific record.
@@ -174,3 +174,23 @@ greetJohn :: Person -> String
 greetJohn Person {name=n@"John"} = "Hello, " ++ n  -- the 'n@' is optional
 greetJohn _ = "You ain't John!"
 ```
+
+### Deriving
+
+When creating a new `data` or `newtype`, we can *derive* instances for our type:
+
+```Haskell
+data Weekday = Monday | Tuesday | Wednesday | Thursday | Friday
+    deriving (Eq, Ord, Bounded, Enum, Show, Read)
+```
+
+Now we can:
+
+* compare equality via `Eq`
+* order the days via `Ord`
+* check lowest or highest value via `Bounded`
+* `pred` or `succ` it via `Enum`
+* print it to string via `Show`
+* read it from user input via `Read`
+
+All this functionality for free! There are definitions for `deriving` each typeclass in the *Haskell 98* spec, but it's magic on the surface.
