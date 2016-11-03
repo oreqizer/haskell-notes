@@ -1,4 +1,4 @@
-# Algebraic data types
+# Data types
 
 An *algebraic data type* is a type created by combining other types. The most common example is a **list**, which is defined as:
 
@@ -83,8 +83,6 @@ leet :: Point Float  -- expects a value of Point Float Float
 leet = Point 13.37 13.37
 ```
 
-`FloatPoint` is now a `Point` containing two `Float`s, `IntPoint` contains two `Int`s.
-
 Type constructors can have an arity of *1-n*.
 
 ```Haskell
@@ -126,4 +124,53 @@ data Circle = Circle Point Radius
 
 ### Newtype
 
-TODO
+Like `data` with **one** constructor that has **one** field. There are differences that justify the actual existence of `newtype`:
+
+* constructors are erased at *compile time*, thus no need for unboxing
+* guarantees the exact same representation as the wrapped type
+* has different *strictness* properties than `data`
+
+Only types with a *single constructor* can be wrapped in a `newtype` - it is thus not algebraic. Also, when using the *record syntax*, only one field can be declared.
+
+One of the common uses of `newtype` is to give additional properties to an existing type, for example custom implementation of a type class.
+
+### Record syntax
+
+Used for, well, records:
+
+```Haskell
+data Person = Person { name :: String
+                     , age  :: Int
+                     , food :: String
+                     } deriving (Eq, Show)
+```
+
+This creates the functions **name**, **age** and **food**, that will return the values of the fields of the specific record.
+
+Creating, updating and using the record:
+
+```Haskell
+getJohn :: Person
+getJohn = Person {name="John", age=28, food="Lasagne"}
+
+getOldJohn :: Person
+getOldJohn = getJohn {age=75}
+
+-- using the supplied functions
+description :: Person -> String
+description p =
+    name p ++ ", aged " ++ show (age p) ++ ", loves " ++ food p
+
+-- pattern matching
+description' :: Person -> String
+description' Person {name=n, age=a, food=f} =
+    n ++ ", aged " ++ show a ++ ", loves " ++ f
+```
+
+We can also *patten match* and *capture* certain values of the record:
+
+```Haskell
+greetJohn :: Person -> String
+greetJohn Person {name=n@"John"} = "Hello, " ++ n  -- the 'n@' is optional
+greetJohn _ = "You ain't John!"
+```
