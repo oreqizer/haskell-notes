@@ -6,7 +6,7 @@ Record syntax is used for, well, records:
 data Person = Person { name :: String
                      , age  :: Int
                      , food :: String
-                     }
+                     } deriving (Eq, Show)
 ```
 
 This creates the functions `name`, `age` and `food`, that will return the values of the fields of the specific record.

@@ -76,7 +76,7 @@ class Truthy a where
     truthy :: a -> Bool
 ```
 
-This defines the function `truthy` for us. Now, we have to make some common types and `instance` of the typeclass:
+This defines the function `truthy` for us. Now, we have to make some common types an `instance` of the typeclass:
 
 ```Haskell
 instance Truthy Int where

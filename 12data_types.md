@@ -132,7 +132,21 @@ Like `data` with **one** constructor that has **one** field. There are differenc
 
 Only types with a *single constructor* can be wrapped in a `newtype` - it is thus not algebraic. Also, when using the *record syntax*, only one field can be declared.
 
-One of the common uses of `newtype` is to give additional properties to an existing type, for example custom implementation of a type class.
+One of the common uses of `newtype` is to wrap and give additional properties to an existing type, for example custom implementation of a type class:
+
+```Haskell
+newtype Reversed = Reversed {getString :: String}
+
+instance Show Reversed where
+    show s = reverse $ getString s
+```
+
+Now if we `show` the `Reversed` type, it will print the string backwards:
+
+```Haskell
+Prelude> show $ Reversed "teel"
+"leet"
+```
 
 ### Deriving
 
