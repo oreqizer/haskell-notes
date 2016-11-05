@@ -17,7 +17,7 @@ ghci> :t (==)
 * `Read` is basically the opposite of `Show`:
 
 ```Haskell
-Prelude> read "8.2" + 3.8
+ghci> read "8.2" + 3.8
 12.0
 ```
 
@@ -45,7 +45,7 @@ instance Show TrafficLight where
 Now we can use it:
 
 ```Haskell
-Prelude> show Red
+ghci> show Red
 "Red light"
 ```
 
@@ -95,10 +95,10 @@ instance Truthy (Maybe m) where
 Now we can use it:
 
 ```Haskell
-Prelude> truthy ""
+ghci> truthy ""
 False
-Prelude> truthy Nothing
+ghci> truthy Nothing
 False
-Prelude> truthy $ Just 6
+ghci> truthy $ Just 6
 True
 ```

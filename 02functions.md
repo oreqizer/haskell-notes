@@ -15,7 +15,7 @@ Functions are values of *function* type.
 Function *application* is **left associative** and has precedence over infix functions:
 
 ```Haskell
-Prelude> succ 9 + 10
+ghci> succ 9 + 10
 20
 ```
 
@@ -24,14 +24,14 @@ Prelude> succ 9 + 10
 Making *prefix* functions *infix*:
 
 ```Haskell
-Prelude> 3 `elem` [1, 3, 3, 7]  -- surround function name with ``
+ghci> 3 `elem` [1, 3, 3, 7]  -- surround function name with ``
 True
 ```
 
 Making *infix* functions *prefix*:
 
 ```Haskell
-Prelude> (+) 2 5  -- surround function with parentheses
+ghci> (+) 2 5  -- surround function with parentheses
 7
 ```
 
@@ -45,16 +45,16 @@ Precedence determines what gets evaluated first.
 * Infix functions range from **0 - 9**, and obey math rules where applicable.
 
 ```Haskell
-Prelude> 10 * 9 + 8
+ghci> 10 * 9 + 8
 98
-Prelude> 10 + 9 * 8
+ghci> 10 + 9 * 8
 82
 ```
 
 Function *composition* (`.`) has a level of **9**, while *infix application* (`$`) has a level of **0**.
 
 ```Haskell
-Prelude> take 1 . reverse . map (*3) $ [1,2,3]
+ghci> take 1 . reverse . map (*3) $ [1,2,3]
 [9]
 ```
 

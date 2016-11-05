@@ -10,7 +10,7 @@ applyTwice f = f . f
 `applyTwice` takes a function and applies it on an argument twice:
 
 ```Haskell
-Prelude> applyTwice (*3) 3
+ghci> applyTwice (*3) 3
 27
 ```
 
@@ -42,14 +42,14 @@ filter p (x:xs)
 `map` takes a function and applies it to every element in a list:
 
 ```Haskell
-Prelude> map (+3) [1,5,3,1,6]
+ghci> map (+3) [1,5,3,1,6]
 [4,8,6,4,9]
 ```
 
 `filter` takes a function taking an element and returning a `Bool`. If `True`, the element stays in the list. If `False` it is omitted:
 
 ```Haskell
-Prelude> filter (>3) [1,5,3,2,1,6,4,3,2,1]
+ghci> filter (>3) [1,5,3,2,1,6,4,3,2,1]
 [5,6,4]
 ```
 
@@ -58,10 +58,10 @@ Prelude> filter (>3) [1,5,3,2,1,6,4,3,2,1]
 Let's wombo combo these! The following finds a sum of all odd squares less than 10000:
 
 ```Haskell
-Prelude> sum (takeWhile (<10000) (filter odd (map (^2) [1..])))
+ghci> sum (takeWhile (<10000) (filter odd (map (^2) [1..])))
 166650
-Prelude> -- or using a list comprehension:
-Prelude> sum (takeWhile (<10000) [n^2 | n <- [1..], odd (n^2)])  
+ghci> -- or using a list comprehension:
+ghci> sum (takeWhile (<10000) [n^2 | n <- [1..], odd (n^2)])  
 166650  
 ```
 
@@ -158,25 +158,25 @@ f $ x = f x
 Both these operators can be used to get rid of parentheses:
 
 ```Haskell
-Prelude> succ (head (map (+2) (reverse [1,2,3])))
+ghci> succ (head (map (+2) (reverse [1,2,3])))
 6
-Prelude> succ . head . map (+2) . reverse $ [1,2,3]
+ghci> succ . head . map (+2) . reverse $ [1,2,3]
 6
-Prelude> succ $ head $ map (+2) $ reverse [1,2,3]
+ghci> succ $ head $ map (+2) $ reverse [1,2,3]
 6
 ```
 
 However, there's an important difference between the `.` and `$` versions. Besides being more mathematical, `.` makes a *new* function that can exist on it's own and be applied later:
 
 ```Haskell
-Prelude> :t succ . head . map (+2) . reverse
+ghci> :t succ . head . map (+2) . reverse
 succ . head . map (+2) . reverse :: (Enum c, Num c) => [c] -> c
 ```
 
 Trying `:t` on the `$` version will blow up in your face, because it is not a valid expression by itself:
 
 ```Haskell
-Prelude> :t succ $ head $ map (+2) $ reverse
+ghci> :t succ $ head $ map (+2) $ reverse
 
 <interactive>:1:26:
     Couldn't match expected type ‘[r]’ with actual type ‘[a0] -> [a0]’
@@ -190,6 +190,6 @@ Prelude> :t succ $ head $ map (+2) $ reverse
 One special use-case of `$` is that it can *apply* a value to a function in a higer order one:
 
 ```Haskell
-Prelude> map ($ 3) [(+3), (*3), (/3)]
+ghci> map ($ 3) [(+3), (*3), (/3)]
 [6.0,9.0,1.0]
 ```

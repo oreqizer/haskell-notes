@@ -144,7 +144,7 @@ instance Show Reversed where
 Now if we `show` the `Reversed` type, it will print the string backwards:
 
 ```Haskell
-Prelude> show $ Reversed "teel"
+ghci> show $ Reversed "teel"
 "leet"
 ```
 

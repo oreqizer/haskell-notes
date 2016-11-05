@@ -7,7 +7,7 @@ Lists are **homogeneous** - all elements must be of the same type.
 `++`: concatenation
 
 ```Haskell
-Prelude> [1, 2] ++ [3, 4, 5]
+ghci> [1, 2] ++ [3, 4, 5]
 [1,2,3,4,5]
 ```
 
@@ -16,7 +16,7 @@ Prelude> [1, 2] ++ [3, 4, 5]
 `:`: unshift
 
 ```Haskell
-Prelude> 1 : [2, 3]
+ghci> 1 : [2, 3]
 [1,2,3]
 ```
 
@@ -27,7 +27,7 @@ More on the definition of lists in [#12](./12data_types.md).
 `!!`: get element at index
 
 ```Haskell
-Prelude> [1, 2, 3, 4] !! 2
+ghci> [1, 2, 3, 4] !! 2
 3
 ```
 
@@ -36,33 +36,33 @@ Prelude> [1, 2, 3, 4] !! 2
 Lists containing *comparable* elements can themselves be compared:
 
 ```Haskell
-Prelude> [3,2,1] > [2,1,0]  
+ghci> [3,2,1] > [2,1,0]  
 True  
-Prelude> [3,2,1] > [2,10,100]  
+ghci> [3,2,1] > [2,10,100]  
 True  
-Prelude> [3,4,2] > [3,4]  
+ghci> [3,4,2] > [3,4]  
 True
 ```
 
 ### Partitioning
 
 ```Haskell
-Prelude> head [5,4,3,2,1]  
+ghci> head [5,4,3,2,1]  
 5
 ```
 
 ```Haskell
-Prelude> tail [5,4,3,2,1]  
+ghci> tail [5,4,3,2,1]  
 [4,3,2,1]
 ```
 
 ```Haskell
-Prelude> last [5,4,3,2,1]  
+ghci> last [5,4,3,2,1]  
 1
 ```
 
 ```Haskell
-Prelude> init [5,4,3,2,1]  
+ghci> init [5,4,3,2,1]  
 [5,4,3,2]
 ```
 
@@ -95,14 +95,14 @@ Mathematical:
 Ranges are a way of making lists that are arithmetic sequences of elements that can be *enumerated*.
 
 ```Haskell
-Prelude> [1..10]
+ghci> [1..10]
 [1,2,3,4,5,6,7,8,9,10]
 ```
 
 Defining steps (must be regular):
 
 ```Haskell
-Prelude> [2, 4..10]
+ghci> [2, 4..10]
 [2,4,6,8,10]
 ```
 
@@ -111,7 +111,7 @@ Prelude> [2, 4..10]
 Much like *set comprehension* in mathematics, `S = {2 * x | x ∈ N, x <= 10}`. The same in **Haskell**:
 
 ```Haskell
-Prelude> [x * 2 | x <- [1..10]]
+ghci> [x * 2 | x <- [1..10]]
 [2,4,6,8,10,12,14,16,18,20]
 ```
 
@@ -124,21 +124,21 @@ Adding more *sources* results in all possible combinations. All *filters* must b
 *More sources:*
 
 ```Haskell
-Prelude> [x*y | x <- [2,5,10], y <- [8,10,11], x*y > 50]  
+ghci> [x*y | x <- [2,5,10], y <- [8,10,11], x*y > 50]  
 [55,80,100,110]
 ```
 
 *Filter:*
 
 ```Haskell
-Prelude> [x | x <- [50..100], x `mod` 7 == 3]
+ghci> [x | x <- [50..100], x `mod` 7 == 3]
 [52,59,66,73,80,87,94]
 ```
 
 *Alphabetical:*
 
 ```Haskell
-Prelude> let justUpper st = [c | c <- st, c `elem` ['A'..'Z']]
-Prelude> justUpper "lOL oMG Wtf"
+ghci> let justUpper st = [c | c <- st, c `elem` ['A'..'Z']]
+ghci> justUpper "lOL oMG Wtf"
 "OLMGW"
 ```

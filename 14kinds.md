@@ -5,11 +5,11 @@ A *type* of a *type*. Can be checked with `:k`.
 Kinds show whether a type is a *concrete type*, or a *type constructor*:
 
 ```Haskell
-Prelude> :k Int
+ghci> :k Int
 Int :: *  -- a concrete type
-Prelude> :k Maybe
+ghci> :k Maybe
 Maybe :: * -> *  -- a type constructor with one type parameter
-Prelude> :k Either
+ghci> :k Either
 Either :: * -> * -> *  -- a type constructor with two type parameters
 ```
 
@@ -22,6 +22,6 @@ data Barry t k p = Barry { yabba :: p, dabba :: t k }
 Notice in `dabba`, `k` is applied to `t`, thus the *kind* is `(* -> *)`. `k` and `p` themselves are concrete types:
 
 ```Haskell
-Prelude> :k Barry  
+ghci> :k Barry  
 Barry :: (* -> *) -> * -> * -> *
 ```

@@ -3,18 +3,18 @@
 **Haskell**'s biggest strength! `:t` shows a type of an expression:
 
 ```Haskell
-Prelude> :t "HELLO!"  
+ghci> :t "HELLO!"  
 "HELLO!" :: [Char]
 ```
 
 It prints `expression :: type`, where `::` is read as *has type of*. It is also used as a **type annotation**:
 
 ```Haskell
-Prelude> :t 1
+ghci> :t 1
 1 :: Num a => a
-Prelude> :t 1 :: Integer
+ghci> :t 1 :: Integer
 1 :: Integer :: Integer
-Prelude> :t 1 :: Float
+ghci> :t 1 :: Float
 1 :: Float :: Float
 ```
 
@@ -41,7 +41,7 @@ They can be also determined by `ghci` from the implementation (checked with `:t`
 Used to describe **polymorphic functions**:
 
 ```Haskell
-Prelude> :t head
+ghci> :t head
 head :: [a] -> a
 ```
 
