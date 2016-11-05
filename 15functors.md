@@ -51,12 +51,23 @@ fmap (g . f) = fmap g . fmap f
 
 Functors, also called *morphisms* in category theory, are a type of mapping between categories.
 
-> **Note:** Mathematical mumbo jumbo incoming! Functors cannot be fully understood unless you really understand what's beneath.
+> **Note:** Mathematical mumbo jumbo incoming! Only read this if you really want to understand functors as an abstract concept. You don't need this if you just want to know and use Haskell's `Functor` typeclass.
 
-Haskell's main category we will be discussing is **Hask**. Haskell types are it's objects, `.` is *composition*, a function `f :: a -> b` for types `a` and `b` is a *morphism*.
+Haskell's main category we will be discussing is **Hask**. Haskell types are it's objects, `.` is *composition*, a function `f :: a -> b` for types `a` and `b` is a *morphism*. In **Hask**, the *identity morphism* is `id`, so we get:
+
+```
+id . f = f . id = f
+```
+
+For this to work, we're missing subscripts. Function `id` in Haskell is *polymorphic* - it has many sources and many outputs. This conflicts with category theory's morphisms, as they are *monomorphic*, they have a specific source and a specific target object. Haskell deals with this by specifying the **type** of the function, thus making *polymorphic* functions *monomorphic* for the type. This is important for us to allow discussion about functions as they were monomorphic.
 
 Functors in Haskell are mappings from the main **Hask** category, to it's subcategory that is a category of types of the *type constructor*. For example, the list functor goes from **Hask** to **Lst**, where **Lst** is the category containing only *list types*.
 
-Function `id` in Haskell is *polymorphic* - it has many sources and many outputs. This conflicts with category theory's morphisms, as they are *monomorphic*, they have a specific source and a specific target object.
+To sum up, check this list from the [Haskell wiki](https://en.wikibooks.org/wiki/Haskell/Category_theory):
 
-Haskell deals with this by specifying the **type** of the function, thus making *polymorphic* functions *monomorphic* for the type. This is important for us to allow discussion about functions as they were monomorphic.
+* We work in the category **Hask** and its subcategories.
+* Objects are types.
+* Morphisms are functions.
+* Things that take a type and return another type are type constructors.
+* Things that take a function and return another function are higher-order functions.
+* Typeclasses, along with the polymorphism they provide, make a nice way of capturing the fact that in category theory things are often defined over a number of objects at once.
