@@ -9,7 +9,9 @@ class Functor f where
 
 Notice that `f` has the *kind* of `* -> *`. Functors describe how `fmap` should behave when used on different *type constructors*.
 
-For example, if we wanted to define `fmap` for lists, it would be defined like so:
+> To understand functors more easily, one could think about the type constructor as a *box* that holds a value of a specific type. `fmap` takes a regular function of type `a -> b`, a *box* `f` that holds a value of type `a` in the form `f a`, applies the function to `a` and puts it back in the box as `f b`. However, it's more correct to say that a functor is a **computational context**.
+
+For example, lists are a *computational context* of nondeterminism. We don't know what value to apply `fmap` to, so we just apply it to every possible value. If we wanted to define `fmap` for lists, it would be defined like so:
 
 ```Haskell
 instance Functor [a] where
@@ -17,11 +19,11 @@ instance Functor [a] where
     fmap f (x:xs) = f x : fmap xs
 ```
 
-Since list is a type constructor with many values, `fmap` walks over every value and applies the function on it, producing a *mapped* list. This is basically how `map` is defined.
+This is similar to how `map` is defined, and in reality, `fmap` is defined simply as `fmap = map`.
 
 > **Note:** Originally, `fmap` was called `map`. This proved to be a difficulty when junior people were learning about lists, as the error messages were too abstract and cryptic. `map` was thus left for lists only, and functor's `map` was renamed to `fmap`.
 
-`Maybe`'s `fmap` implementation is pretty straightforward, too:
+`Maybe`'s `fmap` implementation is pretty straightforward:
 
 ```Haskell
 instance Functor Maybe where
@@ -29,7 +31,7 @@ instance Functor Maybe where
     fmap _ Nothing = Nothing
 ```
 
-If the value is a `Just`, it applies the function on the underlying value. Else, just return `Nothing` since we have nothing to map over. You get the point.
+If the value with context is a `Just`, it applies the function on the underlying value. Else, just return `Nothing` since we have nothing to map over. You get the point.
 
 ### Functor rules
 
