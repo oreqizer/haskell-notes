@@ -37,6 +37,17 @@ ghci> (+) <$> Just 5 <*> Nothing
 Nothing
 ```
 
+Another good example is nondeterminism. Let's apply a list of *functions* on a list of *values*:
+
+```Haskell
+ghci> [(+), (*)] <*> [1, 2] <*> [2, 3]
+[3,4,4,5,2,3,4,6]
+ghci> [(*3), (+5), (^2)] <*> [2, 3, 4]
+[6,9,12,7,8,9,4,9,16]
+```
+
+As last time, every possible *function* is applied to every possible *value*, producing a long of all the combinations.
+
 ### Applicative rules
 
 Like the `Functor` class, `Applicative` has some rules that must be followed for correct implementation:
