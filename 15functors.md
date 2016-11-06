@@ -33,6 +33,19 @@ instance Functor Maybe where
 
 If the value with context is a `Just`, it applies the function on the underlying value. Else, just return `Nothing` since we have nothing to map over. You get the point.
 
+### Function functor
+
+Functions, `(->) r`, are also instances of `Functor` typeclass. Definition:
+
+```Haskell
+instance Functor ((->) r) where  
+    fmap = (.)  -- more verbose version: fmap f g = f . g
+```
+
+It's really just a function composition.
+
+Again, type of `fmap` is `fmap :: (a -> b) -> f a -> f b`. If we replace `f` with `(->) r`, we get `fmap :: (a -> b) -> ((->) r a) -> ((->) r b)`, which is the same as `fmap :: (a -> b) -> (r -> a) -> (r -> b)`.
+
 ### Functor rules
 
 These are rules essential for correct functor implementation:
